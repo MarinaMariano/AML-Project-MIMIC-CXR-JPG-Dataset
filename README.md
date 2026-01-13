@@ -1,7 +1,7 @@
 # AML-Project-MIMIC-CXR-JPG-Dataset
 ## Dataset
 
-This project uses the **MIMIC-CXR-JPG** dataset (version 2.1.0), a large publicly available collection of chest radiographs with structured labels derived from free-text radiology reports.
+This project uses the **MIMIC-CXR-JPG** dataset (version 2.1.0), a large publicly available collection of chest radiographs with structured labels derived from free-text radiology reports. The dataset contains 377,110 JPG format images and structured labels derived from the 227,827 free-text radiology reports associated with these images.
 
 ### Citations
 
