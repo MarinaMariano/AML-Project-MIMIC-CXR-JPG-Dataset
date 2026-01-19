@@ -2,13 +2,13 @@
 
 
 ## AIM 
-The aim of this project is to develop, test and study the application of CNNs for medical diagnosis porpuses. Two datasets have been used : a Labeled Optical Coherence Tomography (OCT) dataset and a Chest X-Ray dataset (da dove sono stati presi). CNNs are specialised neural Networks for image classification and their application in the medical has obtained great results. 
+The aim of this project is to develop, test and study the application of CNNs for medical diagnosis porpuses. Two datasets have been used : a Labeled Optical Coherence Tomography (OCT) dataset and a Chest X-Ray dataset (Available at: https://data.mendeley.com/datasets/rscbjbr9sj/3). CNNs are specialised neural Networks for image classification and their application in the medical field has in recent years, obtained great results improving  phisicians diagnosis. 
 
 ## Project Pipeline
 
 ### **Dataset organization**
 
-The Labeled Optical Coherence Tomography (OCT) The two datasets are organized into class-specific folders: The Labeled Optical Coherence Tomography (OCT)  is divided intwo four classes (`NORMAL`, `CNV`,`DRUSEN`, `DME`), suggesting the need of a multi class classification model. The Chest X-Ray dataset is organized into two folders (`NORMAL`, `PNEUMONIA`)
+The two datasets are organized into class-specific folders: The Labeled Optical Coherence Tomography (OCT)  is divided intwo four classes (`NORMAL`, `CNV`,`DRUSEN`, `DME`), suggesting the need of a multi class classification model. The Chest X-Ray dataset is organized into two folders (`NORMAL`, `PNEUMONIA`)
 
 
 ### **Train / Validation / Test split**
@@ -16,7 +16,7 @@ Both datasets are divided into training and test sets. A validation set is obtai
 
 ### **Image preprocessing**
 
-To allow  confrontations, all images are resized to `224x224` (opinabile) and converted to RGB format. and Pixel values are normalized to the `[0, 1]` range.
+To allow  confrontations, all images are resized to `224x224` and converted to RGB format. and Pixel values are normalized to the `[0, 1]` range.
 
 ### **Data augmentation (training only)**
 
