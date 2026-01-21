@@ -77,19 +77,23 @@ After feature extraction, the network uses a lightweight classification head:
 - Output Layer: 1 neuron with Sigmoid activation
 - Binary classification
 
----
+----
 
-### **Evaluation metrics**
+## **Evaluation metrics**
 
 Accuracy, MCC and the standard statistical measures are used for general performance evaluation. AUC is included to provide a more robust metric for imbalanced datasets.
 
-### **Training strategy**
+
+## **Training strategy**
 
 Supervised training is performed using the training set and monitored on the validation set. Early Stopping is applied to prevent overfitting.
 
-### **Fine-tuning**
-
-Selected layers of the pre-trained backbone are unfrozen for fine-tuning. A lower learning rate is used during this phase.
+Training Configuration
+- Optimizer: Adam
+- Loss: Binary Crossentropy
+- Batch size: 16
+- Epochs : da definire
+- Early stopping (patience: 5)
 
 ### **Final evaluation**
 
