@@ -2,7 +2,7 @@
 
 
 ## INTRODUCTION 
-In this project we develop, test and study the application of CNNs for medical diagnosis porpuses. Specifically the core idea was to create a trainable network that didn't rely on transfer of knowledge from pretrained arhitectures, but could be entirely developed using the resources of edge devices. Two datasets have been used : a Labeled Optical Coherence Tomography (OCT) dataset and a Chest X-Ray dataset (Available at: https://data.mendeley.com/datasets/rscbjbr9sj/3). The first one is a large multi-class dataset with (inserire numero immagine) while the latter is a smaller dataset dividend into two classes. The use of CNNs in the medical field has increased in recent years, and obtained great results improving  phisicians diagnosis. For this reason it is important to develope scalable networks. 
+In this project we develop, test and study the application of CNNs for medical diagnosis porpuses. Specifically the core idea was to create a trainable network that didn't rely on transfer of knowledge from pretrained arhitectures, but could be entirely developed using the resources of edge devices. Two datasets have been used : a Labeled Optical Coherence Tomography (OCT) dataset and a Chest X-Ray dataset (Available at: https://data.mendeley.com/datasets/rscbjbr9sj/3). The first one is a large multi-class dataset with 115203 images, while the latter is a smaller dataset dividend into two classes. The use of CNNs in the medical field has increased in recent years, and obtained great results improving  phisicians diagnosis. For this reason it is important to develope scalable networks. 
 
 ----
 
@@ -15,7 +15,7 @@ The two datasets are organized into class-specific folders: The Labeled Optical 
 
 
 ### **Train / Validation / Test split**
-Both datasets are divided into training and test sets. A validation set is obtained by the initial training set, divided and randomised with a specific manner to avoid data leakage. The test set is used exclusively for final model evaluation.
+Both datasets are divided into training, validation and test sets. The validation set is obtained by the initial training set, divided and randomised with a specific manner to avoid data leakage. The test set is used exclusively for final model evaluation.
 
 ### X-Ray Dataset Split
 
@@ -31,18 +31,18 @@ Both datasets are divided into training and test sets. A validation set is obtai
 
 ## **Image preprocessing**
 
-To allow  confrontations, all images are resized to `224x224` and converted to RGB format (3 channels). Pixel values are normalized to the `[0, 1]` range.
+To allow  confrontations, all images are resized to `224x224` and converted to RGB format (3 channels). Pixel values are normalized to the `[0, 1]` range. qui bisogna dire che abbiamo deciso d non fare più 224 x224 perché runnava troppo lentamente, pù inserire la lista di cambiamenti apportati ad altri parametri per lo stesso motivo. dire che io l'ho fatto non subito dopo aver iportato i dataset ma durante il training
 
 ### **Data augmentation for chest X-ray dataset**
 
-Random transformations such as horizontal flipping, rotation, and zoom are applied to the chest-x ray dataset, to improve generalization and reduce overfitting. 
+Random transformations such as horizontal flipping, rotation, and zoom are applied to the chest-x ray dataset, to improve generalization and reduce overfitting. io non ho usato horizontale flipping ma solo rotatio e un'altra perché nelle immagini mediche invertire la simmetria anatomica ha poco senso, ma verificare questa cosa su articoli. dire che io l'ho fatto non subito dopo aver iportato i dataset ma durante il training
 
 ----
 
 ## **Model architecture**
 Our model architecture was based on a Lightweight convolutional neural 
 network specifcillay designed for chest X-ray classification. The proposed CNN architecture is composed of two main feature extraction stages, followed by a classification head.
-The design focuses on efficient feature extraction, multi-scale context aggregation, and low computational cost.
+The design focuses on efficient feature extraction, multi-scale context aggregation, and low computational cost. prendi qualche riga da articolo e citalo dicendo che abbiamo usato quel modello.
 
 ### 1. Feature Extraction (FE Module)
 
