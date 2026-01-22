@@ -2,7 +2,7 @@
 
 
 ## INTRODUCTION 
-In this project we develop, test and study the application of CNNs for medical diagnosis porpuses. Specifically the core idea was to create a trainable network that didn't rely on transfer of knowledge from pretrained arhitectures, but could be entirely developed using the resources of edge devices. Two datasets have been used : a Labeled Optical Coherence Tomography (OCT) dataset and a Chest X-Ray dataset (Available at: https://data.mendeley.com/datasets/rscbjbr9sj/3). The first one is a large multi-class dataset with 115203 images, while the latter is a smaller dataset dividend into two classes. The use of CNNs in the medical field has increased in recent years, and obtained great results improving  phisicians diagnosis. For this reason it is important to develope scalable networks. 
+In this project we develop, test and study the application of CNNs for medical diagnosis porpuses. Specifically the core idea was to create a trainable network that didn't rely on transfer of knowledge from pretrained arhitectures, but could be entirely developed using the resources of edge devices. Two datasets have been used : a Labeled Optical Coherence Tomography (OCT) dataset and a Chest X-Ray dataset (Available at: https://data.mendeley.com/datasets/rscbjbr9sj/3). The first one is a large multi-class dataset with 115203 images, while the latter is a smaller dataset dividend into two classes and made of 5856 images. The use of CNNs in the medical field has increased in recent years, and obtained great results improving  phisicians diagnosis; for this reason it is important to develope scalable networks. 
 
 ----
 
