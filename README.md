@@ -2,7 +2,7 @@
 
 
 ## INTRODUCTION 
-In this project we develop, test and study the application of CNNs for medical diagnosis porpuses. Specifically the core idea was to create a trainable network that didn't rely on transfer of knowledge from pretrained arhitectures, but could be entirely developed using the resources of edge devices. Two datasets have been used : a Labeled Optical Coherence Tomography (OCT) dataset and a Chest X-Ray dataset (Available at: https://data.mendeley.com/datasets/rscbjbr9sj/3). The first one is a large multi-class dataset with 115203 images, while the latter is a smaller dataset dividend into two classes and made of 5856 images. The use of CNNs in the medical field has increased in recent years, and obtained great results improving  phisicians diagnosis; for this reason it is important to develope scalable networks. 
+In this project we develop, test and study the application of CNNs for medical diagnosis porpuses. Specifically the core idea was to create a trainable network that didn't rely on transfer of knowledge from pretrained arhitectures, but could be entirely developed using the resources of edge devices. Two datasets have been used : a Labeled Optical Coherence Tomography (OCT) dataset and a Chest X-Ray dataset (Available at: https://data.mendeley.com/datasets/rscbjbr9sj/3). The first one is a large multi-class dataset with 109,309 images, while the latter is a smaller dataset dividend into two classes and made of 5856 images. The use of CNNs in the medical field has increased in recent years, and obtained great results improving  phisicians diagnosis; for this reason it is important to develope scalable networks. 
 
 ----
 
@@ -17,7 +17,7 @@ The two datasets are organized into class-specific folders: The Labeled Optical 
 ### **Train / Validation / Test split**
 Both datasets are divided into training, validation and test sets. The validation set is obtained by the initial training set, divided and randomised with a specific manner to avoid data leakage. The test set is used exclusively for final model evaluation.
 
-### X-Ray Dataset Split
+### X-Ray Dataset Split                                         
 
 | Dataset      | Number of Images | Classes |
 |--------------|------------------|---------|
@@ -26,6 +26,14 @@ Both datasets are divided into training, validation and test sets. The validatio
 | Test         | 624              | 2       |
 | **Total**    | **5,856**        | 2       |
 
+### OCT Dataset Split
+
+| Dataset      | Number of Images | Classes |
+|--------------|------------------|---------|
+| Training     | 86,648           | 4       |
+| Validation   | 21,661           | 4       |
+| Test         | 1,000            | 4       |
+| **Total**    | **109,309**      | 4       |
 
 ----
 
