@@ -48,9 +48,11 @@ Random transformations such as horizontal flipping, rotation, and zoom are appli
 ----
 
 ## **Model architecture**
-Our model architecture was based on a Lightweight convolutional neural 
-network specifcillay designed for chest X-ray classification. The proposed CNN architecture is composed of two main feature extraction stages, followed by a classification head.
-The design focuses on efficient feature extraction, multi-scale context aggregation, and low computational cost. prendi qualche riga da articolo e citalo dicendo che abbiamo usato quel modello.
+We adopted the same model architecture based on a lightweight convolutional neural 
+network inspired by the one proposed by Yen and Tsao (2024), specifcillay designed for chest X-ray classification (which consisted of a redesigned feature extraction (FE) module and multiscale feature (MF) module and validated using publicly available COVID-19 datasets).
+The proposed CNN architecture is composed, indeed, of two main feature extraction stages, followed by a classification head. The binary head (single sigmoid output) was replaced with a 4-class softmax head to classify OCT images into CNV, DME, DRUSEN, and NORMAL. Minor hyperparameter adjustments (e.g., pooling sizes, dense units, dropout) were introduced to match the OCT task and computational constraints.
+
+Reference: Yen, C.-T., & Tsao, C.-Y. (2024). Lightweight convolutional neural network for chest X-ray images classification. Scientific Reports, 14, 29759. https://doi.org/10.1038/s41598-024-80826-z
 
 ### 1. Feature Extraction (FE Module)
 
