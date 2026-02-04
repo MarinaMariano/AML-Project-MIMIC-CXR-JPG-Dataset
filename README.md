@@ -2,7 +2,19 @@
 
 
 ## INTRODUCTION 
-In this project we develop, test and study the application of CNNs for medical diagnosis porpuses. Specifically the core idea was to create a trainable network that didn't rely on transfer of knowledge from pretrained arhitectures, but could be entirely developed using the resources of edge devices. Two datasets have been used : a Labeled Optical Coherence Tomography (OCT) dataset and a Chest X-Ray dataset (Available at: https://data.mendeley.com/datasets/rscbjbr9sj/3). The first one is a large multi-class dataset with 109,309 images, while the latter is a smaller dataset dividend into two classes and made of 5856 images. The use of CNNs in the medical field has increased in recent years, and obtained great results improving  phisicians diagnosis; for this reason it is important to develope scalable networks. 
+
+This project was initially designed to evaluate the same CNN architecture on two different medical imaging datasets, namely Optical Coherence Tomography (OCT) and Chest X-Ray dataset, following the lightweight model proposed by Yen & Tsao (2024). The first one is a large multi-class dataset with 109,309 images, while the latter is a smaller dataset dividend into two classes and made of 5856 images.
+
+The original idea was to use the two different datasets and keep the model fixed: Luca would have applied the Yen & Tsao CNN to the Chest X-Ray dataset, while Marina planned to use the same architecture on the much larger OCT dataset.
+However, the OCT dataset scale and I/O overhead made an end-to-end training computationally impractical: despite multiple optimizations, model depth reduction, lower image resolution, reduced batch size and epochs, removal of expensive feature modules, and local dataset staging on Colab to avoid remote disk access training, the training time remained prohibitive (exceeding one hour per epoch).
+
+To overcome these constraints while preserving a meaningful comparison, the project design shifted to a **comparison on the Chest X-ray dataset** only, **evaluating**:
+- the lightweight **custom architecture** derived from Yen & Tsao (2024) (implemented by Luca), **and**
+- the **pretrained** DenseNet-121 from TorchXRayVision with weights="densenet121-res224-all" (implemented by Marina).
+
+A pretrained model is a neural network whose weights have already been optimized on large-scale datasets, providing a strong initialization for downstream tasks. Specifically, we used a pretrained DenseNet backbone and re-purpose it for **binary classification**, producing a discrete label **0/1** for the two target classes (**PNEUMONIA vs NORMAL**).
+The transfer-learning pipeline consists of loading the pretrained feature extractor and replacing the original classifier with a task-specific head (binary output).
+The backbone is kept fixed (non-trainable) and only the new classification head is optimized.
 
 ----
 
