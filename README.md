@@ -3,7 +3,7 @@
 
 ## INTRODUCTION 
 
-This project was initially designed to evaluate the same CNN architecture on two different medical imaging datasets, namely Optical Coherence Tomography (OCT) and Chest X-Ray dataset, following the lightweight model proposed by Yen & Tsao (2024). The first one is a large multi-class dataset with 109,309 images, while the latter is a smaller dataset dividend into two classes and made of 5856 images.
+This project was initially designed to evaluate the same CNN architecture on two different medical imaging datasets, namely Optical Coherence Tomography (OCT) and Chest X-Ray dataset, following the lightweight model proposed by Yen & Tsao (2024), (Yen, C.-T., & Tsao, C.-Y. (2024). Lightweight convolutional neural network for chest X-ray images classification. Scientific Reports, 14, 29759. https://doi.org/10.1038/s41598-024-80826-z). The first one is a large multi-class dataset with 109,309 images, while the latter is a smaller dataset dividend into two classes and made of 5856 images.
 
 The original idea was to keep the model architecture fixed and evaluate it on two different datasets: the Yen & Tsao CNN would have been applied to the Chest X-Ray dataset and, in parallel, to the much larger OCT dataset.
 However, the OCT dataset scale and I/O overhead made an end-to-end training computationally impractical: despite multiple optimizations, model depth reduction, lower image resolution, reduced batch size and epochs, removal of expensive feature modules, and local dataset staging on Colab to avoid remote disk access training, the training time remained prohibitive (exceeding one hour per epoch).
@@ -23,13 +23,12 @@ The backbone is kept fixed (non-trainable) and only the new classification head 
 
 ## **Dataset organization**
 
-The Chest X-ray dataset is organized into two folders: `NORMAL` (chest X-rays from healthy subjects, showing clear lung fields without visible signs of infection or abnormal opacitie), `PNEUMONIA`(chest X-rays from patients diagnosed with pneumonia, characterized by radiographic patterns such as lung infiltrates, consolidations, or increased opacity). In total, the dataset contains 5,856 images
-
+The Chest X-ray dataset is a folder that contains two subdirectories, train and test and inside each split, images are organized into class-specific folders named `NORMAL` (chest X-rays from healthy subjects, showing clear lung fields without visible signs of infection or abnormal opacitie) and `PNEUMONIA`(chest X-rays from patients diagnosed with pneumonia, characterized by radiographic patterns such as lung infiltrates, consolidations, or increased opacity). In total, the dataset contains 5,856 images.
 
 ### **Train / Validation / Test split**
-Both datasets are divided into training, validation and test sets. The validation set is obtained by the initial training set, divided and randomised with a specific manner to avoid data leakage. The test set is used exclusively for final model evaluation.
+The dataset is divided into training, validation and test sets. The validation set is obtained by the initial training set that was randomly shuffled and split using an 80/20 ratio to avoid data leakage. The test set is used exclusively for final model evaluation.
 
-### X-Ray Dataset Split                                         
+### X-Ray Dataset Split (Luca – Custom CNN, Yen & Tsao)                                         
 
 | Dataset      | Number of Images | Classes |
 |--------------|------------------|---------|
@@ -38,20 +37,25 @@ Both datasets are divided into training, validation and test sets. The validatio
 | Test         | 624              | 2       |
 | **Total**    | **5,856**        | 2       |
 
-### OCT Dataset Split
+### X-Ray Dataset Split (Marina – Pretrained DenseNet-121)
 
 | Dataset      | Number of Images | Classes |
 |--------------|------------------|---------|
-| Training     | 86,648           | 4       |
-| Validation   | 21,661           | 4       |
-| Test         | 1,000            | 4       |
-| **Total**    | **109,309**      | 4       |
+| Training     | 4,204            | 2       |
+| Validation   | 1,050            | 2       |
+| Test         | 624              | 2       |
+| **Total**    | **5,878**        | 2       |
 
 ----
 
-## **Image preprocessing**
+## **Image Preprocessing – Pretrained DenseNet-121**
 
-To allow  confrontations, all images are resized to `224x224` and converted to RGB format (3 channels). Pixel values are normalized to the `[0, 1]` range. qui bisogna dire che abbiamo deciso d non fare più 224 x224 perché runnava troppo lentamente, pù inserire la lista di cambiamenti apportati ad altri parametri per lo stesso motivo. dire che io l'ho fatto non subito dopo aver iportato i dataset ma durante il training
+For the pretrained DenseNet-121 model, image preprocessing follows the standardized pipeline provided by TorchXRayVision, ensuring compatibility with the pretrained weights. Images are converted to grayscale and transformed into tensors with shape [1, H, W]. Pixel values are rescaled to [0, 255] and normalized using xrv.datasets.normalize with a maximum value of 255, producing intensity values in the range **[-1024, 1024]. A **center crop** (XRayCenterCrop) is applied, followed by resizing to **224 × 224 pixels** (XRayResizer). The final output is a float tensor with shape [1, 224, 224]`.
+The same preprocessing pipeline is applied to both training and test images.
+
+## **Image Preprocessing – Custom CNN (Yen & Tsao)**
+This section reports the preprocessing steps used for this model.
+
 
 ### **Data augmentation for chest X-ray dataset**
 
