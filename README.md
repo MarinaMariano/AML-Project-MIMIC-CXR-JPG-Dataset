@@ -1,11 +1,11 @@
-# CNNs FOR MEDICAL IMAGES DIAGNOSIS: TWO CASE STUDIES
+# A COMPARATIVE STUDY OF COSTUM AND PRETRAINED CNNs FOR CHEST X-RAY ClASSIFICATION
 
 
 ## INTRODUCTION 
 
 This project was initially designed to evaluate the same CNN architecture on two different medical imaging datasets, namely Optical Coherence Tomography (OCT) and Chest X-Ray dataset, following the lightweight model proposed by Yen & Tsao (2024). The first one is a large multi-class dataset with 109,309 images, while the latter is a smaller dataset dividend into two classes and made of 5856 images.
 
-The original idea was to use the two different datasets and keep the model fixed: Luca would have applied the Yen & Tsao CNN to the Chest X-Ray dataset, while Marina planned to use the same architecture on the much larger OCT dataset.
+The original idea was to keep the model architecture fixed and evaluate it on two different datasets: the Yen & Tsao CNN would have been applied to the Chest X-Ray dataset and, in parallel, to the much larger OCT dataset.
 However, the OCT dataset scale and I/O overhead made an end-to-end training computationally impractical: despite multiple optimizations, model depth reduction, lower image resolution, reduced batch size and epochs, removal of expensive feature modules, and local dataset staging on Colab to avoid remote disk access training, the training time remained prohibitive (exceeding one hour per epoch).
 
 To overcome these constraints while preserving a meaningful comparison, the project design shifted to a **comparison on the Chest X-ray dataset** only, **evaluating**:
