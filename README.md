@@ -23,7 +23,7 @@ The backbone is kept fixed (non-trainable) and only the new classification head 
 
 ## **Dataset organization**
 
-The two datasets are organized into class-specific folders: The Labeled Optical Coherence Tomography (OCT)  is divided intwo four classes (`NORMAL`, `CNV`,`DRUSEN`, `DME`), suggesting the need of a multi class classification model. The Chest X-Ray dataset is organized into two folders (`NORMAL`, `PNEUMONIA`)
+The Chest X-ray dataset is organized into two folders: `NORMAL` (chest X-rays from healthy subjects, showing clear lung fields without visible signs of infection or abnormal opacitie), `PNEUMONIA`(chest X-rays from patients diagnosed with pneumonia, characterized by radiographic patterns such as lung infiltrates, consolidations, or increased opacity). In total, the dataset contains 5,856 images
 
 
 ### **Train / Validation / Test split**
