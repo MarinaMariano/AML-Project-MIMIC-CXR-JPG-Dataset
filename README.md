@@ -59,18 +59,16 @@ This section reports the preprocessing steps used for this model.
 
 ### **Data augmentation for chest X-ray dataset**
 
-Random transformations such as horizontal flipping, rotation, and zoom are applied to the chest-x ray dataset, to improve generalization and reduce overfitting. io non ho usato horizontale flipping ma solo rotatio e un'altra perché nelle immagini mediche invertire la simmetria anatomica ha poco senso, ma verificare questa cosa su articoli. dire che io l'ho fatto non subito dopo aver iportato i dataset ma durante il training
-
+Random transformations such as horizontal flipping, rotation, and zoom are applied to the chest-x ray dataset, to improve generalization and reduce overfitting. io non ho fatto augemntation, Luke se tu vuoi scrivici quello che hai fatto tu.
 ----
 
 ## **Model architecture**
+### **First model: Custom CNN, Yen & Tsao**
 We adopted the same model architecture based on a lightweight convolutional neural 
 network inspired by the one proposed by Yen and Tsao (2024), specifcillay designed for chest X-ray classification (which consisted of a redesigned feature extraction (FE) module and multiscale feature (MF) module and validated using publicly available COVID-19 datasets).
-The proposed CNN architecture is composed, indeed, of two main feature extraction stages, followed by a classification head. The binary head (single sigmoid output) was replaced with a 4-class softmax head to classify OCT images into CNV, DME, DRUSEN, and NORMAL. Minor hyperparameter adjustments (e.g., pooling sizes, dense units, dropout) were introduced to match the OCT task and computational constraints.
+The proposed CNN architecture is composed, indeed, of two main feature extraction stages, followed by a classification head. Scrivi qualcosa in aggiunta e che sia specifico.
 
-Reference: Yen, C.-T., & Tsao, C.-Y. (2024). Lightweight convolutional neural network for chest X-ray images classification. Scientific Reports, 14, 29759. https://doi.org/10.1038/s41598-024-80826-z
-
-### 1. Feature Extraction (FE Module)
+#### 1. Feature Extraction (FE Module)
 
 The Feature Extraction (FE) module is designed to efficiently extract local spatial features while reducing redundancy. Structure:
 
@@ -81,7 +79,7 @@ The Feature Extraction (FE) module is designed to efficiently extract local spat
 - **Concatenation** (Merges processed and unprocessed channel branches)
 - **Residual Connection**
 
-### 2. Multi-scale Feature Module (MF Module)
+#### 2. Multi-scale Feature Module (MF Module)
 
 The Multi-scale Feature (MF) module captures contextual information at different spatial scales. Structure:
 
@@ -92,7 +90,7 @@ The Multi-scale Feature (MF) module captures contextual information at different
 -Concatenation Combines multi-scale representations
 -Final 1×1 Convolution
 
-### **3. Classification Head**
+#### **3. Classification Head**
 
 After feature extraction, the network uses a lightweight classification head:
 
@@ -102,6 +100,12 @@ After feature extraction, the network uses a lightweight classification head:
 - Regularization
 - Output Layer: 1 neuron with Sigmoid activation
 - Binary classification
+
+Reference: Yen, C.-T., & Tsao, C.-Y. (2024). Lightweight convolutional neural network for chest X-ray images classification. Scientific Reports, 14, 29759. https://doi.org/10.1038/s41598-024-80826-z
+
+
+### **Second model: Pretrained DenseNet-121**
+We instantiated a DenseNet-121 architecture from the TorchXRayVision (xrv) library. The weights "densenet121-res224-all" indicate pretrained on large-scale chest X-ray datasets, trained with 224×224 input resolution. This backbone acts as a feature extractor, not a classifier. We move the backbone’s parameters and buffers to the selected compute device so that input tensors and model weights are on the same device. We switch the backbone to evaluation mode disableing batch normalization updates, dropout randomness and gradient computation for all backbone parameters. Since the backbone is frozen, we want its behavior to remain deterministic and identical to pretraining, letting it acts as a fixed feature extractor. Then we added a task specific binary classification head.
 
 ----
 
